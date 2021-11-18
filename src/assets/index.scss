@@ -25,6 +25,7 @@ nav {
     @apply dark:text-white;
   }
   .card_header {
+    @apply flex;
     .card_title {
       @apply text-base font-semibold inline-block text-black;
       @apply dark:text-white;

@@ -5,6 +5,11 @@ export default {
             type: Object,
             required: true
         }
+    },
+    data() {
+        return {
+            time: new Date().toTimeString().split(' ')[0],
+        }
     }
 }
 </script>
@@ -15,6 +20,7 @@ export default {
             <div class="flex flex-col mx-5 w-full">
                 <div class="card_header">
                     <slot name="header" />
+                    <div class="card_time">{{time}}</div>
                 </div>
                 <slot name="body" />
                 <div class="card_footer">
