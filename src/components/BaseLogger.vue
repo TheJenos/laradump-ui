@@ -1,4 +1,5 @@
 <script>
+import utils from '../composition/logs.js';
 export default {
     props: {
         data: {
@@ -9,6 +10,7 @@ export default {
     data() {
         return {
             time: new Date().toTimeString().split(' ')[0],
+            editor: utils.editor
         }
     }
 }
@@ -25,7 +27,8 @@ export default {
                 <slot name="body" />
                 <div class="card_footer">
                     <slot name="footer" />
-                    <a class="card_code" :href="`vscode://file/${data.call.file_path}:${data.call.line}`">{{data.call.file_name}}:{{data.call.line}}</a>
+                    <a class="card_code" v-if="editor == 'vscode'" :href="`vscode://file/${data.call.file_path}:${data.call.line}`">{{data.call.file_name}}:{{data.call.line}}</a>
+                    <a class="card_code" v-if="editor == 'php_storm'" :href="`phpstorm://open?url=file:/${data.call.file_path}&line=${data.call.line}`">{{data.call.file_name}}:{{data.call.line}}</a>
                 </div>
             </div>
         </div>

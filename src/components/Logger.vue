@@ -1,15 +1,17 @@
 <script setup>
 import { onMounted } from 'vue'
 import SocketIO from '../socket/index.js'
-import logs from '../composition/logs.js'
+import util from '../composition/logs.js'
 import ModelLogger from './Loggers/ModelLogger.vue'
 import QueryLogger from './Loggers/QueryLogger.vue'
 import MeasureDumper from './Loggers/MeasureDumper.vue'
 import MailLogger from './Loggers/MailLogger.vue'
 
+const logs = util.logs
+
 onMounted(() => {
   SocketIO.getSocket().on('log', (log) => {
-    logs.value.push(log)
+    util.logs.value.push(log)
   })
 })
 

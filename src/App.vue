@@ -1,24 +1,29 @@
 <script setup>
 import Logger from './components/Logger.vue';
 import { ref, computed, onMounted } from 'vue';
-import logs from './composition/logs.js';
+import utils from './composition/logs.js';
 
 const darkData = ref(window.darkTheme || false)
 
-onMounted(() => {
 
-  if (window.darkTheme) {
-    console.log(window.darkTheme);
-    document.querySelector('html').classList.add('dark');
-  } else {
-    document.querySelector('html').classList.remove('dark');
-  }
+onMounted(() => {
+  setInterval(function () {
+    if (window.darkTheme !== undefined && window.editor !== undefined) {
+      darkData.value = window.darkTheme;
+      if (darkData.value) {
+        document.querySelector('html').classList.add('dark');
+      } else {
+        document.querySelector('html').classList.remove('dark');
+      }
+      utils.editor.value = window.editor;
+      clearInterval(this);
+    }
+  }, 100)
 })
 
 const darkMode = computed({
   get: () => darkData.value,
   set: val => {
-
     darkData.value = val;
     window.darkTheme = val;
     if (window.darkTheme) {
@@ -29,9 +34,17 @@ const darkMode = computed({
   }
 })
 
+const editorType = computed({
+  get: () => utils.editor.value,
+  set: val => {
+    utils.editor.value = val;
+    window.editor = val;
+  }
+})
+
 const onClearAll = () => {
   // window.dispatchEvent(new Event('clear-all'));
-  logs.value = [];
+  utils.logs.value = [];
 };
 
 </script>
@@ -55,6 +68,15 @@ const onClearAll = () => {
               </div>
             </div>
             <div class="ml-auto">
+              <div class="flex flex-row justify-center items-center space-x-4">
+                <div class="dark:text-white">Editor:</div>
+                <select v-model="editorType">
+                  <option value="vscode">VS Code</option>
+                  <option value="php_storm">PhpStorm</option>
+                </select>
+              </div>
+            </div>
+            <div class="ml-3">
               <div class="flex space-x-4">
                 <button class="btn" @click="onClearAll">Clear All</button>
               </div>
