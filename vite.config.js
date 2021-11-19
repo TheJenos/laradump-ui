@@ -6,5 +6,14 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     outDir: '../app',
-  }
+    minify: true,
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        entryFileNames: `assets/[name].js`,
+        chunkFileNames: `assets/[name].js`,
+        assetFileNames: `assets/[name].[ext]`
+      }
+    }
+  },
 })
