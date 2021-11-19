@@ -19,7 +19,7 @@ export default {
 <template>
     <div class="card">
         <div class="flex">
-            <div class="flex flex-col mx-5 w-full">
+            <div class="flex flex-col px-5 w-full">
                 <div class="card_header">
                     <slot name="header" />
                     <div class="card_time">{{time}}</div>

@@ -40,11 +40,11 @@ select {
   }
   .card_query {
     font-family: "Montserrat", sans-serif;
-    @apply text-gray-800 mt-2 p-5 bg-gray-200 rounded-lg;
+    @apply text-gray-800 mt-2 p-5 bg-gray-200 rounded-lg overflow-x-auto;
     @apply dark:bg-gray-800 dark:text-white;
   }
   .card_dump {
-    @apply text-gray-800 mt-2 p-2 bg-gray-200 rounded-lg text-sm;
+    @apply text-gray-800 mt-2 p-2 bg-gray-200 rounded-lg text-sm overflow-x-auto;
     @apply dark:bg-gray-800;
   }
   .card_footer {
