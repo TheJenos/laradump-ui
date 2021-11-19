@@ -69,7 +69,7 @@ const onClearAll = () => {
               </div>
             </div>
             <div class="ml-auto">
-              <div class="flex flex-row justify-center items-center space-x-4" v-if="isVSCode">
+              <div class="flex flex-row justify-center items-center space-x-4" v-if="!isVSCode">
                 <div class="dark:text-white">Editor:</div>
                 <select v-model="editorType">
                   <option value="vscode">VS Code</option>
